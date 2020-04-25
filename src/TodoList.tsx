@@ -1,5 +1,6 @@
 import React from 'react';
 import { TodoListItem } from './TodoListItem';
+import { ListGroup } from 'react-bootstrap';
 
 interface TodoListProps {
     todos: Array<Todo>;
@@ -8,10 +9,12 @@ interface TodoListProps {
 
 export const TodoList: React.FC<TodoListProps> = ({ todos, toggleTodo }) => {
     return (
-        <ul>
+        <ListGroup>
+            <ListGroup.Item>
         {todos.map(todo => {
             return <TodoListItem key={todo.text} todo={todo} toggleTodo={toggleTodo} />;
         })}
-    </ul>
+        </ListGroup.Item>
+    </ListGroup>
     );
 };
