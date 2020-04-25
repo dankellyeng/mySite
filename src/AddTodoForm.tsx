@@ -1,7 +1,5 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {enableLogin} from './actions';
-
+import { Form, Button } from 'react-bootstrap';
 
 interface AddTodoFormProps {
     addTodo: AddTodo;
@@ -11,17 +9,10 @@ interface RootState {
     isLogged: boolean;
 }
 
-
-
 export const AddTodoForm: React.FC<AddTodoFormProps> = ({addTodo}) => {
     const[newTodo, setNewTodo] = useState("");
 
-    const selectisLogged = (state: RootState) => state.isLogged;
-
-    const isLogged = useSelector(selectisLogged);
-
-    const dispatch = useDispatch();
-
+   
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setNewTodo(e.target.value);
     };
@@ -35,16 +26,11 @@ export const AddTodoForm: React.FC<AddTodoFormProps> = ({addTodo}) => {
  
     return (
         <div>
-        <form>
-        <input type="text" value={newTodo} onChange={handleChange}/>
-        <button type="submit" onClick={handleSubmit}>Add Todo</button>
-        </form>
-        <button onClick={() => dispatch(enableLogin())}>Login</button>
-        { !isLogged?
-            <h6>Not Logged in</h6>
-            :
-            <h6>Logged in!</h6>
-        }
+        <Form>
+        <Form.Control type="text" value={newTodo} onChange={handleChange}/>
+        <Button type="submit" onClick={handleSubmit}>Add Todo</Button>
+        </Form>
+        
         </div>
     );
 };
