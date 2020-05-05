@@ -53,7 +53,7 @@ const initialTodos: Array<Todo> = [
   { text: "Write app", complete: false },
 ];
 
-export const Demos = () => {
+export const Project = () => {
     const [todos, setTodos] = useState(initialTodos)
   
     const toggleTodo: ToggleTodo = (selectedTodo) => {
