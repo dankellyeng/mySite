@@ -1,6 +1,7 @@
 import React from 'react';
 // @ts-ignore
 import styled from 'styled-components';
+import "../App.css";
 
 // @ts-ignore
 const Styles = styled.div`
@@ -37,8 +38,8 @@ export const About = () => {
 
     return (
     <Styles>
-        <div>
-            <h1>About</h1>
+        <div >
+            <h1 className="title">About</h1>
         </div>
     </Styles>
     )

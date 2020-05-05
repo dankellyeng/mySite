@@ -38,7 +38,7 @@ export const Inspiration = () => {
     return (
     <Styles>
         <div>
-            <h1>Inspiration</h1>
+            <h1 className="title">Inspiration</h1>
         </div>
     </Styles>
     );

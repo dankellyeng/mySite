@@ -7,7 +7,7 @@ import Media from 'react-bootstrap/Media'
 // @ts-ignore
 const Styles = styled.div`
     .navbar {
-        background-color: #31393c;
+        background-color: #272E31;
     }
 
     // .justify-content-end {
