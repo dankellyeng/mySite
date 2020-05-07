@@ -2,6 +2,7 @@ import React from 'react';
 // @ts-ignore
 import styled from 'styled-components';
 import "../App.css";
+import { Container } from 'react-bootstrap';
 
 // @ts-ignore
 const Styles = styled.div`
@@ -38,9 +39,15 @@ export const About = () => {
 
     return (
     <Styles>
-        <div >
+        <Container >
             <h1 className="title">About</h1>
-        </div>
+            <p className="title">
+            I really enjoy making web apps using React as well as iPhone apps in Swift and Android apps in Java.
+                Front-end development is my speciality but I am also condifent with the back-end.  
+            </p>
+
+            <h1>Skills</h1>
+        </Container>
     </Styles>
     )
 }

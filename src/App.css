@@ -1,37 +1,7 @@
-/* .App {
-  text-align: center;
-  height: 100%;
-
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-} */
 
 .todoList{
 font-size: 1.3rem;
+
 }
 
 .complete {
@@ -39,16 +9,23 @@ font-size: 1.3rem;
 }
 
 .fullPage {
-  /* background-color: #31393c; */
   background-image: linear-gradient(-15deg, #313950, #272e31);
-  min-height: 90vh;
+  min-height: 92vh;
   min-width: -webkit-fill-available;
 
 }
 
 .title {
   color: #ffffff;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Alegreya', serif;
   text-align: center;
   padding-top: 30px;
+}
+
+
+.paragraph {
+  color: #ffffff;
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+  padding-top: 10px;
 }
