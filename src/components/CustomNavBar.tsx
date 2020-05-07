@@ -10,29 +10,20 @@ const Styles = styled.div`
         background-color: #272E31;
     }
 
-    // .justify-content-end {
-    //     margin-right: 2px;
-    // }
-
-    // .dropdown-toggle::after {
-    //     display: none;
-    // }
-
-    
-
     .navbar-brand, .navbar-nav .nav-link {
         color: #ffffff;
         font-size: 1.4em;
-        font-family: 'Inconsolate', monospace;
+        font-family: 'Open Sans', sans-serif;
 
         &:hover {
             color: #848fa5;
         }
+
+        .logo.navbar-brand {
+            font-size: 1.8em !important;
+        }
     }
 
-    .mr-auto {
-        
-    }
 `;
 
 const CustomNavbar = () => {
@@ -50,7 +41,7 @@ const CustomNavbar = () => {
                     />
                 </Media>
                 </Navbar.Brand>
-                <Navbar.Brand>Dan Kelly</Navbar.Brand>
+                <Navbar.Brand className="logo">Dan Kelly</Navbar.Brand>
                 <Nav className="ml-auto">
                 <Nav.Link href="/about">About</Nav.Link>
                 <Nav.Link href="/portfolio">Portfolio</Nav.Link>
