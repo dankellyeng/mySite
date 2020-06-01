@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { createLogger } from 'redux-logger';
 
 import rootReducer from './reducer';
-import { createStore, combineReducers, compose, applyMiddleware} from 'redux';
+import { createStore, compose, applyMiddleware} from 'redux';
 
 const loggerMiddleware = createLogger();
 

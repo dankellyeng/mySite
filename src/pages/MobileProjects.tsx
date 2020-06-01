@@ -1,4 +1,4 @@
-import React, { useState, FunctionComponent } from 'react';
+import React, { FunctionComponent, useState, useEffect } from 'react';
 // @ts-ignore
 import styled from 'styled-components';
 // @ts-ignore
@@ -134,6 +134,21 @@ const Styles = styled.div`
       
 `;
 
+type Proj = {
+    title: string;
+    url: string;
+    image: string;
+    description: string;
+    design: string;
+    learnt: string;
+    skill1: string;
+    skill2: string;
+    skill3: string;
+    skill4: string;
+    skill5: string;
+    type: string;
+    }
+
 interface RootState {
       editEnabled: boolean;
   }
@@ -153,18 +168,47 @@ interface RootState {
     )
 
 export const MobileProjects = () => {
-   
+    const [projects, setProjects] = useState<Array<Proj>>([]);
+    const API_KEY: any = process.env.REACT_APP_DB_KEY!;
+
+    
+
+    useEffect (() => {
+        getProjects()
+      }, []);
+    
+      const getProjects = async () => {
+
+        const response = await fetch('https://9xqgtpzp56.execute-api.ap-southeast-2.amazonaws.com/default/fetchProjects', {
+            method: 'GET',
+        headers:{
+            'Content-Type': 'application/json',
+            'x-api-key': API_KEY
+        }
+        });
+        const data = await response.json();
+        const webArray= data.filter(isMobile);
+        setProjects(webArray);
+      };
+
+      function isMobile(element: { type: string; }, index: any, array: any){
+          return (element.type === "mobile")
+      }
 
     return (
     <Styles>
         <div>
             <CardDeck className="cards">
-              <CustomCard url="https://lh3.googleusercontent.com/VdLUwWXcPRzSl6lRMec505Jz-QPvrIFjpmxY5eku58Ju0bsCjiLwOlMwGlpvh78UwJU=w2880-h1532-rw" title="Spotify">
+            {
+            projects.map(project => (
+                    <CustomCard title={project!.title} url={project!.image} />
+                    ))}
+              {/* <CustomCard url="https://lh3.googleusercontent.com/VdLUwWXcPRzSl6lRMec505Jz-QPvrIFjpmxY5eku58Ju0bsCjiLwOlMwGlpvh78UwJU=w2880-h1532-rw" title="Spotify">
              </CustomCard>
              <CustomCard url="https://lh3.googleusercontent.com/mk1_XT9yK_IBr05kCrma_Oe68Ek5SZCDJKB38jFIb1xyu8VS2LRb4k1iPNVaIG2ohNs=w2880-h1532-rw" title="example">
              </CustomCard>
              <CustomCard url="https://lh3.googleusercontent.com/ZfNgOi9Q8LSb8LuSJGNoeDzPiFq6Biy5ccCsLQKnvXjxiU8GigtBrO-Pxgcl_8sIhB8=w2880-h1532-rw" title="example" >
-             </CustomCard>
+             </CustomCard> */}
             </CardDeck>  
             <CardDeck className="cards">
               <CustomCard url="https://is1-ssl.mzstatic.com/image/thumb/Purple123/v4/1c/01/f7/1c01f7de-6014-c5e6-668f-49f876b65a08/pr_source.png/230x0w.png" title="example">
