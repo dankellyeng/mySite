@@ -71,7 +71,7 @@ const Styles = styled.div`
     }
 
     h1 {
-        font-size: 1.8em;
+        font-size: 2.8em;
     }
 
     p {
@@ -79,6 +79,7 @@ const Styles = styled.div`
         display: inline-block;
         justify-content: center;
         padding-bottom: 30px;
+        font-size: 1.2em;
     }
 
     
@@ -97,11 +98,13 @@ export const Home = () => {
                     <div className="frame">            
                 </div>
                 <Media className="image">
+                <a href='/about'>
                     <img 
                     width={650}
                     src='/images/itMe.png' 
-                    alt='image of me on couch'
+                    alt='me on couch'
                     />
+                </a>
                  </Media>
                 </div>
             </Container>

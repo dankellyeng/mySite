@@ -49,12 +49,13 @@ const Styles = styled.div`
 
     .tabRow {
         display: block !important;
+
     }
     
-
-   
+    
 
 `;
+
 
 export const Portfolio = () => {
 
@@ -62,14 +63,18 @@ export const Portfolio = () => {
     <Styles>
         <Container className="title">
             <h1>Portfolio</h1>
-            <Row className="justify-content-md-center">
+            {/* {projects.map(project => (
+            <h1>{project!.title} {project!.url}</h1>
+            
+            ))} */}
+            <Row className="justify-content-md-center paragraph">
             <Col md={8}><p>The following is a collection of assignments I completed during my Masters of IT 
                 as well as personal projects. Due to plagiarism rules I cannot provide the 
                 code to my assignments but for everything else the code is available on my <a href="https://github.com/dankellyeng">GitHub</a> page.</p>
             </Col>
             </Row>
-            <Row className="tabRow">
-            <Tabs className="tabs" defaultActiveKey="mobile" id="tabs">
+            <Row className="tabRow paragraph">
+            <Tabs className="tabs" defaultActiveKey="web" id="tabs">
                 <Tab className="tab" eventKey="web" title="Web">
                     <WebProjects />
                 </Tab>

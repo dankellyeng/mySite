@@ -1,4 +1,4 @@
-import React, { useState, FunctionComponent } from 'react';
+import React, { useState, FunctionComponent, useEffect } from 'react';
 // @ts-ignore
 import styled from 'styled-components';
 // @ts-ignore
@@ -9,19 +9,6 @@ import { IoIosArrowDroprightCircle } from 'react-icons/io';
 
 
 const Styles = styled.div`
-    // .navbar {
-    //     background-color: #31393c;
-    // }
-
-    // .navbar-brand, .navbar-nav .nav-link {
-    //     color: #ffffff;
-    //     font-size: 1.4em;
-    //     font-family: 'Inconsolate', monospace;
-
-    //     &:hover {
-    //         color: #848fa5;
-    //     }
-    // }
 
     .customCards {
         width: 100px;
@@ -142,6 +129,20 @@ const Styles = styled.div`
       
 `;
 
+type Proj = {
+    title: string;
+    url: string;
+    image: string;
+    description: string;
+    design: string;
+    learnt: string;
+    skill1: string;
+    skill2: string;
+    skill3: string;
+    skill4: string;
+    skill5: string;
+    type: string;
+    }
 
 interface RootState {
       editEnabled: boolean;
@@ -152,28 +153,68 @@ interface RootState {
     url: string
     }
 
-  const CustomCard: FunctionComponent<CardProps> = ({title, url}) => 
+  export const CustomCard: FunctionComponent<CardProps> = ({title, url}) => 
     (<Card className="container">
         <Card.Img className="cardImg" src={url}></Card.Img>
         <div className="overlay"></div>
         <Card.Title className="cardTitle">{title}</Card.Title>
-        <Button className="cardButton">View Project    <IoIosArrowDroprightCircle /></Button>
+        <Button className="cardButton" href='/'>View Project    <IoIosArrowDroprightCircle /></Button>
     </Card>
     )
 
 export const WebProjects = () => {
-   
+    const [projects, setProjects] = useState<Array<Proj>>([]);
+    const API_KEY: any = process.env.REACT_APP_DB_KEY!;
+
+    
+
+    useEffect (() => {
+        getProjects()
+      }, []);
+    
+      const getProjects = async () => {
+
+        const response = await fetch('https://9xqgtpzp56.execute-api.ap-southeast-2.amazonaws.com/default/fetchProjects', {
+            method: 'GET',
+        headers:{
+            'Content-Type': 'application/json',
+            'x-api-key': API_KEY
+        }
+        });
+        const data = await response.json();
+        const webArray= data.filter(isWeb);
+        setProjects(webArray);
+      };
+
+      function isWeb(element: { type: string; }, index: any, array: any){
+          return (element.type === "web")
+      }
+
+      //filter array for web type
+    //   const webArray= projects.filter(isWeb);
+      
+    //   var i;
+    //   for(i = 0; i<projects.length; i++){
+    //       if(projects[i].type === "web"){
+    //         webArray.push(projects[i]); 
+    //       }
+    //   }
+    //   setProjects(webArray);
 
     return (
     <Styles>
         <div>
             <CardDeck className="cards">
-              <CustomCard url="https://24dlmn2bqamt1e72kah59881-wpengine.netdna-ssl.com/wp-content/uploads/2017/07/9.png" title="Spotify">
+            {
+            projects.map(project => (
+                    <CustomCard title={project!.title} url={project!.image} />
+                    ))}
+              {/* <CustomCard url="https://personal-porfolio-dan-kelly.s3-ap-southeast-2.amazonaws.com/Screen+Shot+2020-05-29+at+10.01.44+am.png" title="Home Finder">
              </CustomCard>
              <CustomCard url="https://colorlib.com/wp/wp-content/uploads/sites/2/newspaper-theme-examples.jpg" title="example">
              </CustomCard>
              <CustomCard url="https://www.dbswebsite.com/wp-content/uploads/Centura-Health-website-screenshot-for-healthcare-websites-DBS-blog.png" title="example" >
-             </CustomCard>
+             </CustomCard> */}
             </CardDeck>  
             <CardDeck className="cards">
               <CustomCard url="https://static-cms.hotjar.com/images/review-site-homepage-poll-example.width-750.jpg" title="example">

@@ -6,11 +6,10 @@ import { Portfolio } from './pages/Portfolio';
 import { Inspiration } from './pages/Inspiration';
 import { Demos } from './pages/Demos';
 import  PageNotFound from './pages/PageNotFound';
+import { ProjectPage } from "./pages/ProjectPage";
 
 class Router extends Component {
-  	constructor(props: any) {
-		super(props);
-  	}
+  
 
   	render() {
     	return (
@@ -20,6 +19,7 @@ class Router extends Component {
               <Route path="/portfolio" component={Portfolio} />
 			  <Route path="/inspiration" component={Inspiration} />
               <Route path="/demos" component={Demos} />
+			  <Route path="/project" component={ProjectPage} />
               <Route component={PageNotFound} />
       		</Switch>
     	);
