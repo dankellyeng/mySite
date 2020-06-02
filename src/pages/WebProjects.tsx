@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { CardDeck, Card, Button } from 'react-bootstrap';
 import '../App.css';
 import { IoIosArrowDroprightCircle } from 'react-icons/io';
+import { Link } from 'react-router-dom';
 
 
 const Styles = styled.div`
@@ -150,15 +151,44 @@ interface RootState {
 
   type CardProps = {
     title: string,
-    url: string
+    url: string,
+    description: string,
+    design: string,
+    learnt: string,
+    skill1: string,
+    skill2: string,
+    skill3: string,
+    skill4: string,
+    skill5: string,
+    image: string,
     }
 
-  export const CustomCard: FunctionComponent<CardProps> = ({title, url}) => 
+  export const CustomCard: FunctionComponent<CardProps> = ({title, description, design, learnt, skill1, skill2, skill3, skill4, skill5, url, image}) => 
     (<Card className="container">
-        <Card.Img className="cardImg" src={url}></Card.Img>
+        <Card.Img className="cardImg" src={image}></Card.Img>
         <div className="overlay"></div>
         <Card.Title className="cardTitle">{title}</Card.Title>
-        <Button className="cardButton" href='/'>View Project    <IoIosArrowDroprightCircle /></Button>
+        {/* <Button className="cardButton" href='/'>View Project    <IoIosArrowDroprightCircle /></Button> */}
+        <Link 
+        className="cardButton" 
+        to={
+            {
+            pathname: "/project",
+            state: {
+                title: title, 
+                description: description, 
+                design: design, 
+                learnt: learnt, 
+                skill1: skill1, 
+                skill2: skill2, 
+                skill3: skill3, 
+                skill4: skill4, 
+                skill5: skill5, 
+                url: url,
+            }
+            }
+        }
+        >View Project <IoIosArrowDroprightCircle /></Link>
     </Card>
     )
 
@@ -207,7 +237,20 @@ export const WebProjects = () => {
             <CardDeck className="cards">
             {
             projects.map(project => (
-                    <CustomCard title={project!.title} url={project!.image} />
+                    <CustomCard 
+                    key={project!.title}
+                    title={project!.title} 
+                    url={project!.url}
+                    image={project!.image}
+                    description={project!.description}
+                    design={project!.design}
+                    learnt={project!.learnt}
+                    skill1={project!.skill1}
+                    skill2={project!.skill2}
+                    skill3={project!.skill3}
+                    skill4={project!.skill4}
+                    skill5={project!.skill5}
+                     />
                     ))}
               {/* <CustomCard url="https://personal-porfolio-dan-kelly.s3-ap-southeast-2.amazonaws.com/Screen+Shot+2020-05-29+at+10.01.44+am.png" title="Home Finder">
              </CustomCard>
@@ -217,12 +260,12 @@ export const WebProjects = () => {
              </CustomCard> */}
             </CardDeck>  
             <CardDeck className="cards">
-              <CustomCard url="https://static-cms.hotjar.com/images/review-site-homepage-poll-example.width-750.jpg" title="example">
+              {/* <CustomCard url="https://static-cms.hotjar.com/images/review-site-homepage-poll-example.width-750.jpg" title="example">
              </CustomCard>
              <CustomCard url="https://www.educowebdesign.com/sites/default/files/webster_bank_drupal_banking_example_website.jpg" title="example">
              </CustomCard>
-             <CustomCard url="https://res.cloudinary.com/webfactory/image/fetch/f_auto,q_auto/https://s3-eu-west-1.amazonaws.com/cdn.webfactore.co.uk/web_design_example_6176_500x300.jpg" title="example">
-             </CustomCard>
+             <CustomCard url="https://res.cloudinary.com/webfactory/image/fetch/f_auto,q_auto/https://s3-eu-west-1.amazonaws.com/cdn.webfactore.co.uk/web_design_example_6176_500x300.jpg" title="example"> */}
+             {/* </CustomCard> */}
             </CardDeck>       
         </div>
     </Styles>
