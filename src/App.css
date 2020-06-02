@@ -32,9 +32,9 @@ font-size: 1.3rem;
 
 
 .globalButton {
-  background-color: #58789e;
-  border-color: #58789e;
-  width: 160px;
+  background-color: #3fa2dd;
+  border-color: #3fa2dd;
+  width: 180px;
   height: 100px;
   margin-left: 15px;
   margin-right: 15px;
@@ -45,6 +45,8 @@ font-size: 1.3rem;
 
 .btn-primary{
   font-size: 1.8em;
+  /* background-color: red; */
+
 }
 
 
@@ -55,7 +57,23 @@ font-size: 1.3rem;
   outline: none !important;
 }
 
+.globalButton:hover{
+  border-color: #58789e;
+  background-color: #58789e;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.globalButton.active{
+  border-color: #58789e !important;
+  background-color: #58789e !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
 .globalButton:focus{
+  border-color: #58789e !important;
+  background-color: #58789e !important;
   box-shadow: none !important;
   outline: none !important;
 }

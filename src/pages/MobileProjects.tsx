@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { CardDeck, Card, Button } from 'react-bootstrap';
 import '../App.css';
 import { IoIosArrowDroprightCircle } from 'react-icons/io';
+import { Link } from 'react-router-dom';
 
 
 const Styles = styled.div`
@@ -135,6 +136,7 @@ const Styles = styled.div`
 `;
 
 type Proj = {
+    key: string;
     title: string;
     url: string;
     image: string;
@@ -155,15 +157,42 @@ interface RootState {
 
   type CardProps = {
     title: string,
-    url: string
+    url: string,
+    description: string,
+    design: string,
+    learnt: string,
+    skill1: string,
+    skill2: string,
+    skill3: string,
+    skill4: string,
+    skill5: string,
+    image: string,
     }
 
-  const CustomCard: FunctionComponent<CardProps> = ({title, url}) => 
+  export const CustomCard: FunctionComponent<CardProps> = ({title, description, design, learnt, skill1, skill2, skill3, skill4, skill5, url, image}) => 
     (<Card className="container">
-        <Card.Img className="cardImg" src={url}></Card.Img>
+        <Card.Img className="cardImg" src={image}></Card.Img>
         <div className="overlay"></div>
         <Card.Title className="cardTitle">{title}</Card.Title>
-        <Button className="cardButton">View Project    <IoIosArrowDroprightCircle /></Button>
+        <Link className="cardButton"
+        to={
+            {
+            pathname: "/project",
+            state: {
+                title: title, 
+                description: description, 
+                design: design, 
+                learnt: learnt, 
+                skill1: skill1, 
+                skill2: skill2, 
+                skill3: skill3, 
+                skill4: skill4, 
+                skill5: skill5, 
+                url: url,
+            }
+            }
+        }
+        >View Project    <IoIosArrowDroprightCircle /></Link>
     </Card>
     )
 
@@ -201,7 +230,20 @@ export const MobileProjects = () => {
             <CardDeck className="cards">
             {
             projects.map(project => (
-                    <CustomCard title={project!.title} url={project!.image} />
+                    <CustomCard 
+                    key={project!.title}
+                    title={project!.title} 
+                    url={project!.url}
+                    image={project!.image}
+                    description={project!.description}
+                    design={project!.design}
+                    learnt={project!.learnt}
+                    skill1={project!.skill1}
+                    skill2={project!.skill2}
+                    skill3={project!.skill3}
+                    skill4={project!.skill4}
+                    skill5={project!.skill5}
+                     />
                     ))}
               {/* <CustomCard url="https://lh3.googleusercontent.com/VdLUwWXcPRzSl6lRMec505Jz-QPvrIFjpmxY5eku58Ju0bsCjiLwOlMwGlpvh78UwJU=w2880-h1532-rw" title="Spotify">
              </CustomCard>
@@ -211,12 +253,12 @@ export const MobileProjects = () => {
              </CustomCard> */}
             </CardDeck>  
             <CardDeck className="cards">
-              <CustomCard url="https://is1-ssl.mzstatic.com/image/thumb/Purple123/v4/1c/01/f7/1c01f7de-6014-c5e6-668f-49f876b65a08/pr_source.png/230x0w.png" title="example">
+              {/* <CustomCard url="https://is1-ssl.mzstatic.com/image/thumb/Purple123/v4/1c/01/f7/1c01f7de-6014-c5e6-668f-49f876b65a08/pr_source.png/230x0w.png" title="example">
              </CustomCard>
              <CustomCard url="https://is2-ssl.mzstatic.com/image/thumb/Purple123/v4/1f/10/b3/1f10b344-9289-42b0-47ee-d92b405255ed/pr_source.png/230x0w.png" title="example">
              </CustomCard>
-             <CustomCard url="https://is1-ssl.mzstatic.com/image/thumb/Purple113/v4/92/33/4e/92334e96-bf94-c136-7c2d-517aced7c894/mzl.hqryvqlo.jpg/230x0w.jpg" title="example">
-             </CustomCard>
+             <CustomCard url="https://is1-ssl.mzstatic.com/image/thumb/Purple113/v4/92/33/4e/92334e96-bf94-c136-7c2d-517aced7c894/mzl.hqryvqlo.jpg/230x0w.jpg" title="example"> */}
+             {/* </CustomCard> */}
             </CardDeck>       
         </div>
     </Styles>
