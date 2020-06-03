@@ -24,6 +24,10 @@ const Styles = styled.div`
         }
     }
 
+    .logo.navbar-brand {
+        font-size: 1.8em !important;
+    }
+
 `;
 
 const CustomNavbar = () => {
@@ -45,7 +49,8 @@ const CustomNavbar = () => {
                 <Nav className="ml-auto">
                 <Nav.Link href="/about">About</Nav.Link>
                 <Nav.Link href="/portfolio">Portfolio</Nav.Link>
-                <Nav.Link href="/inspiration">Inspiration</Nav.Link>
+                {/* <Nav.Link href="/inspiration">Inspiration</Nav.Link> */}
+                <Nav.Link href="/education">Education</Nav.Link>
                 <Nav.Link href="/demos">Demos</Nav.Link>
                 <Nav.Link href="https://github.com/dankellyeng">
                 <Media>

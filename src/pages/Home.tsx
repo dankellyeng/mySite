@@ -75,7 +75,7 @@ const Styles = styled.div`
     }
 
     p {
-        width: 50%;
+        width: 60%;
         display: inline-block;
         justify-content: center;
         padding-bottom: 30px;
@@ -91,7 +91,7 @@ export const Home = () => {
     <Styles>
             <h1 className="title">Hi, I'm Dan</h1>
             <Container className="paragraph">
-            <p >I am an aspiring app developer and designer.
+            <p >Specialist in app development and front-end design.
             </p>
 
                 <div  className="centre">
