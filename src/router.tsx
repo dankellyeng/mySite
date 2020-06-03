@@ -7,6 +7,7 @@ import { Inspiration } from './pages/Inspiration';
 import { Demos } from './pages/Demos';
 import  PageNotFound from './pages/PageNotFound';
 import { ProjectPage } from "./pages/ProjectPage";
+import { Education } from "./pages/Education";
 
 class Router extends Component {
   
@@ -20,6 +21,7 @@ class Router extends Component {
 			  <Route path="/inspiration" component={Inspiration} />
               <Route path="/demos" component={Demos} />
 			  <Route path="/project" component={ProjectPage} />
+			  <Route path="/education" component={Education} />
               <Route component={PageNotFound} />
       		</Switch>
     	);
