@@ -12,7 +12,7 @@ const Styles = styled.div`
 }
 
 .row{
-    justify-content: center;
+    justify-content: left;
 }
 
 // .col{
@@ -37,17 +37,22 @@ padding-top: 2px;
 .uni{
     color: #ffffff;
     font-family: 'Alegreya', serif;
-    text-align: center;
+    // text-align: center;
 }
 
 .paragraph{
     // width: 67%;
-    justify-content: center;
+    justify-content: left;
 }
 
 .row{
     padding-top: 20px;
     padding-bottom: 20px;
+}
+
+.customRow {
+    justify-content: end !important;
+
 }
 
 .textOver{
@@ -72,16 +77,19 @@ export const Education = () => {
 
     return (
     <Styles>
-        <Container className="paragraph">
-            <h1 className="title">Education</h1>
-            <Row>
-                <Col>
+        <div className="paragraph">
+            {/* <h1 className="title">Education</h1> */}
+            <Row className="customRow">
+                <Col sm={4}>
+                <h2 className="title">Formal education</h2>
+                </Col>
+                <Col sm={4}>
                     <div className="underImage">
             <Media>
                 <a href="https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-information-technology-mc208/mc208auscy">
                     <img 
                     className="logos"
-                    width={250}
+                    width={200}
                     src='https://personal-porfolio-dan-kelly.s3-ap-southeast-2.amazonaws.com/rmit+red.png' 
                     alt='RMIT University logo'
                     />
@@ -96,16 +104,13 @@ export const Education = () => {
             </div>
             </div>
             </Col>
-           
-            </Row>
-            <Row>
-            <Col>
+            <Col sm={4}>
             <div className="underImage">
             <Media>
                 <a href="https://www3.monash.edu/pubs/2013handbooks/courses/3910.html">
                     <img 
                     className="logos"
-                    width={250}
+                    width={200}
                     src='https://personal-porfolio-dan-kelly.s3-ap-southeast-2.amazonaws.com/monash+blue.png' 
                     alt='Monash University logo'
                     />
@@ -120,9 +125,12 @@ export const Education = () => {
             </div>
             </Col>
             </Row>
-            <h1 className="title">Honourable mentions</h1>
-            <Row>
-            <Col>
+
+            <Row className="customRow">
+            <Col sm={4}>
+            <h2 className="title">Honourable mentions</h2>
+            </Col>
+            <Col sm={4}>
             <div className="underImage">
             <Media>
                 <a href="https://www.youtube.com/watch?v=kkwiQmGWK4c">
@@ -142,7 +150,7 @@ export const Education = () => {
             </div>
             </div>
             </Col>
-            <Col>
+            <Col sm={4}>
             <div className="underImage">
             <Media>
                 <a href="https://stackoverflow.com/questions/245062/whats-the-difference-between-javascript-and-java">
@@ -163,7 +171,7 @@ export const Education = () => {
             </div>
             </Col>
             </Row>
-            </Container>
+            </div>
 
     </Styles>
     )
