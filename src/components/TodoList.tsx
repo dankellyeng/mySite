@@ -9,7 +9,7 @@ interface TodoListProps {
 
 export const TodoList: React.FC<TodoListProps> = ({ todos, toggleTodo }) => {
     return (
-        <ListGroup>
+        <ListGroup className="toDoList">
             <ListGroup.Item>
         {todos.map(todo => {
             return <TodoListItem key={todo.text} todo={todo} toggleTodo={toggleTodo} />;

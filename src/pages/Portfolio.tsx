@@ -7,23 +7,8 @@ import { WebProjects } from './WebProjects';
 
 // @ts-ignore
 const Styles = styled.div`
-    .navbar {
-        background-color: #31393c;
-    }
-
     .justify-content-md-center {
         font-size: 20px;
-    }
-    
-
-    .navbar-brand, .navbar-nav .nav-link {
-        color: #ffffff;
-        font-size: 1.4em;
-        font-family: 'Inconsolate', monospace;
-
-        &:hover {
-            color: #848fa5;
-        }
     }
 
     .tabs {
@@ -63,10 +48,6 @@ export const Portfolio = () => {
     <Styles>
         <Container className="title">
             <h1>Portfolio</h1>
-            {/* {projects.map(project => (
-            <h1>{project!.title} {project!.url}</h1>
-            
-            ))} */}
             <Row className="justify-content-md-center paragraph">
             <Col md={8}><p>The following is a collection of assignments I completed during my Masters of IT 
                 as well as personal projects. Due to plagiarism rules I cannot provide the 

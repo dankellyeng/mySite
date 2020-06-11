@@ -79,7 +79,6 @@ const Styles = styled.div`
         display: inline-block;
         justify-content: center;
         padding-bottom: 30px;
-        font-size: 1.2em;
     }
 
     

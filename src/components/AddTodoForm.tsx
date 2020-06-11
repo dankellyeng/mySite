@@ -25,10 +25,10 @@ export const AddTodoForm: React.FC<AddTodoFormProps> = ({addTodo}) => {
     }
  
     return (
-        <div>
-        <Form>
-        <Form.Control type="text" value={newTodo} onChange={handleChange}/>
-        <Button type="submit" onClick={handleSubmit}>Add Todo</Button>
+        <div className="toDoInput">
+        <Form className="toDoForm">
+        <Form.Control  type="text" placeholder="Enter a To-Do item" value={newTodo} onChange={handleChange}/>
+        <Button className="globalButtonSml" type="submit" onClick={handleSubmit}>Add Todo</Button>
         </Form>
         
         </div>

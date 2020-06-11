@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 // @ts-ignore
 import styled from 'styled-components';
-import { TodoList } from '../TodoList';
-import { AddTodoForm } from '../AddTodoForm';
 // @ts-ignore
-
 import { CardDeck, Card } from 'react-bootstrap';
-import  { LoginDemo } from '../LoginDemo';
+import  { LoginDemo } from './LoginDemo';
 import '../App.css';
+// @ts-ignore
+import { TodoList } from './TodoList';
+// @ts-ignore
+import { AddTodoForm } from './AddTodoForm';
 
 
 const Styles = styled.div`

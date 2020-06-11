@@ -1,39 +1,16 @@
 import React, { useState } from 'react';
 // @ts-ignore
 import styled from 'styled-components';
-import { TodoList } from '../TodoList';
-import { AddTodoForm } from '../AddTodoForm';
+import { TodoList } from '../components/TodoList';
+import { AddTodoForm } from '../components/AddTodoForm';
 // @ts-ignore
 
-import { CardDeck, Card } from 'react-bootstrap';
-import  { LoginDemo } from '../LoginDemo';
+import { CardDeck, Card, Container } from 'react-bootstrap';
+import  { LoginDemo } from '../components/LoginDemo';
 import '../App.css';
 
 
 const Styles = styled.div`
-    .navbar {
-        background-color: #31393c;
-    }
-
-    // .justify-content-end {
-    //     margin-right: 2px;
-    // }
-
-    // .dropdown-toggle::after {
-    //     display: none;
-    // }
-
-    
-
-    .navbar-brand, .navbar-nav .nav-link {
-        color: #ffffff;
-        font-size: 1.4em;
-        font-family: 'Inconsolate', monospace;
-
-        &:hover {
-            color: #848fa5;
-        }
-    }
 
     .customCards {
         max-width: 350px;
@@ -41,7 +18,19 @@ const Styles = styled.div`
         align-items: center;
         display: flex;
         justify-content: center;
+        background: transparent;
     }
+
+    .card {
+    border: 3px solid white;
+    border-radius: 3%;
+    }
+
+    .centrePage {
+    display: flex;
+    justify-content: center;
+    }
+
 `;
 
 interface RootState {
@@ -78,15 +67,23 @@ export const Demos = () => {
     <Styles>
         <div>
             <h1 className="title">Demos</h1>
+            <p className="paragraph">
+            Below are some fun little demos that showcase some of the techniques and tools I have used with React. 
+            </p>
+            <Container className="centrePage">
             <CardDeck>
               <Card className="customCards">
             <TodoList todos={todos} toggleTodo={toggleTodo} />
             <AddTodoForm addTodo={addTodo}/>
-             </Card>
-             <Card className="customCards">
-            <LoginDemo />
             </Card>
-            </CardDeck>     
+            <Card className="customCards">
+              <div className="paragraph">
+            <LoginDemo />
+            </div>
+            </Card>
+
+            </CardDeck>  
+            </Container>   
         </div>
     </Styles>
     )
