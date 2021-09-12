@@ -44,7 +44,7 @@ const CustomNavbar = () => {
         <Navbar>
             <Navbar.Brand >
                 </Navbar.Brand>
-                <Navbar.Brand href="/" className="logo">Dan </Navbar.Brand>
+                <Navbar.Brand href="/" className="logo">Dan</Navbar.Brand>
                 <Navbar.Brand href="/" className="logo">Kelly</Navbar.Brand>
                 <Nav className="ml-auto">
                 <Nav.Link href="/about">About</Nav.Link>
@@ -52,6 +52,8 @@ const CustomNavbar = () => {
                 {/* <Nav.Link href="/inspiration">Inspiration</Nav.Link> */}
                 {/* <Nav.Link href="/education">Education</Nav.Link> */}
                 <Nav.Link href="/demos">Demos</Nav.Link>
+                <Nav.Link href="/routine">Routine</Nav.Link>
+
                 <Nav.Link href="https://github.com/dankellyeng">
                 <Media>
                     <img

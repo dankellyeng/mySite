@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 // @ts-ignore
 import styled from 'styled-components';
 import { Container, Col, Row, Button, ListGroup } from 'react-bootstrap';

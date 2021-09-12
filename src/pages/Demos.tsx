@@ -8,6 +8,8 @@ import { AddTodoForm } from '../components/AddTodoForm';
 import { CardDeck, Card, Container } from 'react-bootstrap';
 import  { LoginDemo } from '../components/LoginDemo';
 import '../App.css';
+import { People } from '../components/People';
+import { PeopleInput } from '../components/PeopleInput';
 
 
 const Styles = styled.div`
@@ -81,7 +83,12 @@ export const Demos = () => {
             <LoginDemo />
             </div>
             </Card>
-
+            <Card className="customCards">
+              <div className="paragraph">
+              <PeopleInput />
+              <People />
+              </div>
+            </Card>
             </CardDeck>  
             </Container>   
         </div>
