@@ -2,7 +2,7 @@ import React from 'react';
 // @ts-ignore
 import styled from 'styled-components';
 import "../App.css";
-import { Container, Media, Row, Col, Table, ProgressBar } from 'react-bootstrap';
+import { Row, Col} from 'react-bootstrap';
 import { GitHub } from './GitHub';
 import { LinkedIn } from './LinkedIn';
 
