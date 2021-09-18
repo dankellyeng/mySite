@@ -1,0 +1,11 @@
+type Event @model {
+  id: ID!
+  title: String!
+  allDay: Boolean
+  start: String
+  end: String
+  desc: String
+  resourceId: String
+  tooltip: String
+  complete: Boolean
+}

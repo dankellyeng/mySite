@@ -1,23 +1,21 @@
-import React, { useState, FunctionComponent } from "react";
-// @ts-ignore
-import styled from "styled-components";
+import React, { useState, useEffect } from "react";
 import moment from "moment";
+import { API } from "aws-amplify";
+import DatePicker from "react-datepicker";
 
-import { TodoList } from "../components/TodoList";
-import { AddTodoForm } from "../components/AddTodoForm";
-// @ts-ignore
-
-import { Button, Container } from "react-bootstrap";
-import { LoginDemo } from "../components/LoginDemo";
+import { Button, Container, Modal } from "react-bootstrap";
 import "../App.css";
-import { People } from "../components/People";
-import { PeopleInput } from "../components/PeopleInput";
-// import Calendar from '../components/Calendar';
 
 import { Calendar, View, DateLocalizer, Event } from "react-big-calendar";
 
 import { momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import "react-datepicker/dist/react-datepicker.css";
+import { listEvents } from "../graphql/queries";
+import {
+  createEvent as createEventMutation,
+  deleteEvent as deleteEventMutation,
+} from "../graphql/mutations";
 
 moment.locale("ko", {
   week: {
@@ -29,6 +27,15 @@ const localizer = momentLocalizer(moment);
 
 const allViews: View[] = ["agenda", "day", "week", "month"];
 
+const initialFormState = {
+  title: "",
+  allDay: false,
+  // start: moment().toDate(),
+  // end: moment().toDate(),
+  desc: " ",
+  complete: false,
+};
+
 interface Props {
   localizer: DateLocalizer;
 }
@@ -36,8 +43,6 @@ interface Props {
 interface EventProps {
   event: CalendarEvent;
 }
-
-// const allViews: View[] = ['agenda', 'day', 'week', 'month'];
 
 class CalendarEvent {
   title: string;
@@ -68,127 +73,11 @@ class CalendarEvent {
   }
 }
 
-let now = moment().toDate();
-let later = moment().add(1, "hours").toDate();
-
-let now1 = moment().add(2, "hours").toDate();
-let later1 = moment().add(3, "hours").toDate();
-
-let val = "Mon Sep 06 2021 09:00:00 GMT+1000";
-console.log(moment(val).toDate());
-
-// const d = new Date(2021, 8, 6, 9);
-// const e = new Date(2021, 8, 6, 10);
-
-const eventsArray: CalendarEvent[] = [
-  {
-    start: new Date(2021, 8, 6, 9),
-    end: new Date(2021, 8, 6, 10),
-    title: "Rest",
-    allDay: false,
-    desc: "",
-    complete: false,
-  },
-  {
-    start: new Date(2021, 8, 7, 9),
-    end: new Date(2021, 8, 7, 10),
-    title: "2km run",
-    allDay: false,
-    desc: "",
-    complete: false,
-  },
-  {
-    start: new Date(2021, 8, 7, 9),
-    end: new Date(2021, 8, 7, 10),
-    title: "1km walk",
-    allDay: false,
-    desc: "",
-    complete: false,
-  },
-
-  {
-    start: new Date(2021, 8, 7, 9),
-    end: new Date(2021, 8, 7, 10),
-    title: "2 push ups",
-    allDay: false,
-    desc: "",
-    complete: false,
-  },
-  {
-    start: new Date(2021, 8, 8, 9),
-    end: new Date(2021, 8, 8, 10),
-    title: "30 mins movement",
-    allDay: false,
-    desc: "",
-    complete: false,
-  },
-  {
-    start: new Date(2021, 8, 8, 9),
-    end: new Date(2021, 8, 8, 10),
-    title: "2 sit ups",
-    allDay: false,
-    desc: "",
-    complete: false,
-  },
-
-  {
-    start: new Date(2021, 8, 9, 9),
-    end: new Date(2021, 8, 9, 10),
-    title: "Rest",
-    allDay: false,
-    desc: "",
-    complete: false,
-  },
-
-  {
-    start: new Date(2021, 8, 10, 9),
-    end: new Date(2021, 8, 10, 10),
-    title: "1km run",
-    allDay: false,
-    desc: "",
-    complete: false,
-  },
-  {
-    start: new Date(2021, 8, 10, 10),
-    end: new Date(2021, 8, 10, 11),
-    title: "2km walk",
-    allDay: false,
-    desc: "",
-    complete: false,
-  },
-  {
-    start: new Date(2021, 8, 10, 11),
-    end: new Date(2021, 8, 10, 12),
-    title: "2 push ups",
-    allDay: false,
-    desc: "",
-    complete: false,
-  },
-  {
-    start: new Date(2021, 8, 11, 9),
-    end: new Date(2021, 8, 11, 10),
-    title: "30 mins movement",
-    allDay: false,
-    desc: "",
-    complete: false,
-  },
-  {
-    start: new Date(2021, 8, 11, 9),
-    end: new Date(2021, 8, 11, 10),
-    title: "2 sit ups",
-    allDay: false,
-    desc: "",
-    complete: false,
-  },
-];
-
 const markEventDone = (event: CalendarEvent) => {
   event.complete = true;
-  console.log({ eventsArray });
 };
 
 function CustomEvent({ event }: EventProps) {
-  console.log({ event });
   return (
     <div
       style={{
@@ -218,20 +107,73 @@ function CustomEvent({ event }: EventProps) {
 }
 
 export const Routine = () => {
-  const [events, setEvents] = useState(eventsArray);
+  const [events, setEvents] = useState<CalendarEvent[]>([]);
   const [modal, setShowModal] = useState(false);
+  const [formData, setFormData] = useState(initialFormState);
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
 
-  const handleSelect = () => {
+  useEffect(() => {
+    fetchEvents();
+  }, []);
+
+  async function fetchEvents() {
+    const apiData: any = await API.graphql({ query: listEvents });
+    setEvents(apiData.data.listEvents.items);
+  }
+
+  async function handleSelect({ start, end }: any) {
     setShowModal(true);
 
-    let newEvent = {} as CalendarEvent;
-    newEvent.start = moment().toDate();
-    newEvent.end = moment().toDate();
+    // let newEvent = {} as CalendarEvent;
+    // newEvent.start = moment().toDate();
+    // newEvent.end = moment().toDate();
 
-    setEvents([...eventsArray, newEvent]);
+    // let formDataTemp = { start: start, end: end, ...formData };
+
+    // setFormData(formDataTemp);
+
+    setStartDate(start);
+    setEndDate(end);
+    // setEvents([...eventsArray, newEvent]);
+    // return createEvent(start, end);
+  }
+
+  const handleClose = () => {
+    setShowModal(false);
   };
 
-  console.log(events);
+  async function createEvent() {
+    if (!formData.title || !formData.desc) return;
+    let formDataTemp = { start: startDate, end: endDate, ...formData };
+    console.log({ formDataTemp });
+    await API.graphql({
+      query: createEventMutation,
+      variables: { input: formDataTemp },
+    });
+    setEvents([...events, formDataTemp]);
+    setFormData(initialFormState);
+    setShowModal(false);
+  }
+
+  async function deleteEvent({ title }: any) {
+    const newEventsArray = events.filter((event) => event.title !== title);
+    setEvents(newEventsArray);
+    await API.graphql({
+      query: deleteEventMutation,
+      variables: { input: { title } },
+    });
+  }
+
+  // function handleEndChange(end: any) {
+  //   setEndDate(end);
+  //   setFormData({ ...formData, end: end });
+  // }
+
+  // function handleStartChange(start: any) {
+  //   setStartDate(start);
+  //   setFormData({ ...formData, start: start });
+  // }
 
   return (
     <div>
@@ -246,8 +188,8 @@ export const Routine = () => {
           views={allViews}
           defaultDate={new Date()}
           onSelectEvent={(event) => markEventDone(event)}
-          onDoubleClickEvent={(event) => markEventDone(event)}
-          onSelectSlot={() => handleSelect()}
+          onDoubleClickEvent={(event) => deleteEvent(event)}
+          onSelectSlot={handleSelect}
           style={{
             height: "95%",
             width: "100%",
@@ -258,6 +200,71 @@ export const Routine = () => {
           endAccessor="end"
           titleAccessor="title"
         />
+        {/* <AddEventModal /> */}
+        <Modal show={modal} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Modal heading</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <input
+                onChange={(e) =>
+                  setFormData({ ...formData, title: e.target.value })
+                }
+                placeholder="Event title"
+                value={formData.title}
+              />
+              {/* <input
+              type="date"
+              onChange={(e) =>
+                setFormData({ ...formData, start: moment(e.target.value) })
+              }
+              placeholder="Event Start"
+              value={formData.start}
+            />
+            <input
+              type="date"
+              onChange={(e) =>
+                setFormData({ ...formData, end: moment(e.target.value) })
+              }
+              placeholder="Event End"
+              value={formData.end}
+            /> */}
+              {/* <DatePicker
+              name="start"
+              selected={startDate}
+              onChange={handleStartChange}
+            />
+            <DatePicker
+              name="end"
+              selected={endDate}
+              onChange={handleEndChange}
+            /> */}
+
+              {/* <input
+              onChange={(e) =>
+                setFormData({ ...formData, desc: e.target.value })
+              }
+              placeholder="Event description"
+              value={formData.desc}
+            /> */}
+
+              {/* <select id="repeat" name="Repeat Event">
+                <option value="Never">Never</option>
+                <option value="Weekly">Weekly</option>
+                <option value="Fortnightly">Fortnightly</option>
+              </select> */}
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Cancel
+            </Button>
+            <Button variant="secondary" onClick={createEvent}>
+              Create
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </Container>
     </div>
   );
