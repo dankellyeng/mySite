@@ -1,147 +1,150 @@
-import React from 'react';
+import React from "react";
 // @ts-ignore
-import styled from 'styled-components';
+import styled from "styled-components";
 import "../App.css";
-import { Row, Col, Table, ProgressBar } from 'react-bootstrap';
+import { Row, Col, Table, ProgressBar } from "react-bootstrap";
 
 // @ts-ignore
 const Styles = styled.div`
-    
-.logos{
+  .logos {
     border-radius: 5px;
-}
+  }
 
-.row{
+  .row {
     justify-content: center;
-}
+  }
 
-// .col{
-//     display: contents;
-// }
+  // .col{
+  //     display: contents;
+  // }
 
-.table td {
-border: none !important;
-outline: none !important;
-padding-top: 2px;
-}
+  .table td {
+    border: none !important;
+    outline: none !important;
+    padding-top: 2px;
+  }
 
-.progress-bar{
-    background-color: #0BEBA0;
-}
+  .progress-bar {
+    background-color: #0beba0;
+  }
 
-.profiles{
+  .profiles {
     padding-top: 50px;
     padding-bottom: 15px;
-}
+  }
 
-.uni{
+  .uni {
     color: #ffffff;
-    font-family: 'Alegreya', serif;
+    font-family: "Alegreya", serif;
     text-align: center;
-}
+  }
 
-.skillParagraph{
+  .skillParagraph {
     color: #ffffff;
-    font-family: 'Lato', sans-serif;
+    font-family: "Lato", sans-serif;
     text-align: center;
     padding-top: 10px;
     min-width: 350px;
-}
+  }
 
-.row{
+  .row {
     padding-top: 20px;
     padding-bottom: 20px;
-}
-
-
-
-
+  }
 `;
 
 export const Skills = () => {
-
-    return (
+  return (
     <Styles>
-        <div className="skillParagraph">
+      <div className="skillParagraph">
         {/* <h1 className="title">Skills</h1> */}
         <Row>
-            <Col sm={6}>
-            <Table className="table skillParagraph" hover
-            bordered={false}>
-                <tbody>
-                    <tr>
-                    <td>React
-                    <ProgressBar now={70} />
-                    </td>
-                    </tr>
-                    <tr>
-                    <td>Git 
-                    <ProgressBar now={70} />
-                    </td>
-                    </tr>
-                    <tr>
-                    <td>HTML & CSS
-                    <ProgressBar now={70} />
-                    </td>
-                    </tr>
-                    <tr>
-                    <td>REST APIs
-                    <ProgressBar now={60} />
-                    </td>
-                    </tr>
-                    <tr>
-                    <td>JavaScript
-                    <ProgressBar now={60} />
-                    </td>
-                    </tr>
-                    <tr>
-                    <td>iOS apps
-                    <ProgressBar now={60} />
-                    </td>
-                    </tr>
-                    </tbody>
-                    </Table>
-            </Col>
-            <Col sm={6}>
-            <Table className="table skillParagraph" hover
-            bordered={false}>
-                    <tbody>
-                    <tr>
-                    <td>Java
-                    <ProgressBar now={60} />
-                    </td>
-                    </tr>
-                    <tr>
-                    <td>Android apps
-                    <ProgressBar now={50} />
-                    </td>
-                    </tr>
-                    <tr>
-                    <td>Typescript
-                    <ProgressBar now={60} />
-                    </td>
-                    </tr>
-                    <tr>
-                    <td>Swift
-                    <ProgressBar now={50} />
-                    </td>
-                    </tr>
-                    <tr>
-                    <td>C#
-                    <ProgressBar now={60} />
-                    </td>
-                    </tr>
-                    <tr>
-                    <td>Angular
-                    <ProgressBar  now={40} />
-                    </td>
-                    </tr>
-                </tbody>
+          <Col sm={6}>
+            <Table className="table skillParagraph" hover bordered={false}>
+              <tbody>
+                <tr>
+                  <td>
+                    React
+                    <ProgressBar now={95} />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    React Native
+                    <ProgressBar now={95} />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Git
+                    <ProgressBar now={95} />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    HTML & CSS
+                    <ProgressBar now={95} />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    REST APIs
+                    <ProgressBar now={95} />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    JavaScript
+                    <ProgressBar now={90} />
+                  </td>
+                </tr>
+              </tbody>
             </Table>
-            </Col>
-            </Row>
-        </div>
+          </Col>
+          <Col sm={6}>
+            <Table className="table skillParagraph" hover bordered={false}>
+              <tbody>
+                <tr>
+                  <td>
+                    Typescript
+                    <ProgressBar now={80} />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    MySQL
+                    <ProgressBar now={60} />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    C#
+                    <ProgressBar now={60} />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Angular
+                    <ProgressBar now={50} />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    GraphQl
+                    <ProgressBar now={50} />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    SASS
+                    <ProgressBar now={50} />
+                  </td>
+                </tr>
+              </tbody>
+            </Table>
+          </Col>
+        </Row>
+      </div>
     </Styles>
-    )
-}
-
+  );
+};

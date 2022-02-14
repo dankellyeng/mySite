@@ -8,6 +8,8 @@ import { createLogger } from "redux-logger";
 import rootReducer from "./reducer";
 import { createStore, compose, applyMiddleware } from "redux";
 
+import "bootstrap/dist/css/bootstrap.min.css";
+
 import Amplify from "aws-amplify";
 import config from "./aws-exports";
 Amplify.configure(config);

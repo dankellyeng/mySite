@@ -1,79 +1,66 @@
-import React from 'react';
+import React from "react";
 // @ts-ignore
-import styled from 'styled-components';
+import styled from "styled-components";
 import "../App.css";
-import { Row, Col} from 'react-bootstrap';
-import { GitHub } from './GitHub';
-import { LinkedIn } from './LinkedIn';
+import { Row, Col } from "react-bootstrap";
+import { GitHub } from "./GitHub";
+import { LinkedIn } from "./LinkedIn";
 
 // @ts-ignore
 const Styles = styled.div`
-    
-.logos{
+  .logos {
     border-radius: 5px;
-}
+  }
 
-.row{
+  .row {
     justify-content: center;
-}
+  }
 
-// .col{
-//     display: contents;
-// }
+  .table td {
+    border: none !important;
+    outline: none !important;
+    padding-top: 2px;
+  }
 
-.table td {
-border: none !important;
-outline: none !important;
-padding-top: 2px;
-}
-
-.progress-bar{
+  .progress-bar {
     background-color: #3fa2dd;
-}
+  }
 
-.profiles{
+  .profiles {
     padding-top: 50px;
     padding-bottom: 15px;
-}
+  }
 
-.uni{
+  .uni {
     color: #ffffff;
-    font-family: 'Alegreya', serif;
+    font-family: "Alegreya", serif;
     text-align: center;
-}
+  }
 
-.paragraph{
-    // width: 67%;
+  .paragraph {
     justify-content: center;
-}
+    padding-top: 50px;
+  }
 
-.row{
+  .row {
     padding-top: 20px;
     padding-bottom: 20px;
-}
-
-
-
-
+  }
 `;
 
 export const Profiles = () => {
-
-    return (
+  return (
     <Styles>
-        <div className="paragraph">
-        {/* <h1 className="title">Profiles</h1> */}
-
+      <div className="paragraph">
         <Row className="profiles">
-            <Col>
+          <Col>
             <GitHub />
-            </Col>
-            <Col>
+          </Col>
+          <Col>
             <LinkedIn />
-            </Col>
+          </Col>
         </Row>
-        </div>
+      </div>
     </Styles>
-    )
-}
-
+  );
+};
