@@ -16,9 +16,10 @@ const App: React.FC = () => {
           </BrowserRouter>
         </React.Fragment>
       </Layout>
-      <AmplifySignOut />
+      {/* <AmplifySignOut /> */}
     </div>
   );
 };
 
-export default withAuthenticator(App);
+// export default withAuthenticator(App);
+export default App;

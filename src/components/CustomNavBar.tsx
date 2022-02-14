@@ -60,7 +60,7 @@ const CustomNavbar = () => {
             <Nav.Link href="/about">About</Nav.Link>
             <Nav.Link href="/portfolio">Portfolio</Nav.Link>
             <Nav.Link href="/demos">Demos</Nav.Link>
-            <Nav.Link href="/routine">Routine</Nav.Link>
+            {/* <Nav.Link href="/routine">Routine</Nav.Link> */}
 
             <Nav.Link href="https://github.com/dankellyeng">
               <img
