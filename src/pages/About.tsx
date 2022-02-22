@@ -10,34 +10,18 @@ import { Profiles } from "../components/Profiles";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 export const About = () => {
-  const [educationActive, setEducationActive] = useState(true);
-  const [skillsActive, setSkillsActive] = useState(false);
-  const [profileActive, setProfileActive] = useState(false);
+  const [active, setActive] = useState("education");
 
   function toggleActive(item: String) {
     console.log({ item });
     if (item === "education") {
-      if (educationActive) {
-        setEducationActive(false);
-      } else {
-        setEducationActive(true);
-      }
+      setActive("education");
     } else if (item === "skills") {
-      if (skillsActive) {
-        setSkillsActive(false);
-      } else {
-        setSkillsActive(true);
-      }
-    } else {
-      if (profileActive) {
-        setProfileActive(false);
-      } else {
-        setProfileActive(true);
-      }
+      setActive("skills");
+    } else if (item === "profile") {
+      setActive("profile");
     }
   }
-
-  // useEffect(() => {}, []);
 
   return (
     <div className="paragraph" style={styles.paragraph}>
@@ -57,11 +41,10 @@ export const About = () => {
           eventKey="0"
           onClick={() => {
             toggleActive("education");
-            console.log({ educationActive });
           }}
         >
           <Accordion.Header>
-            {!educationActive ? (
+            {active === "education" ? (
               <div style={styles.activeHeader}>
                 <h1>
                   Education <IoIosArrowUp />
@@ -85,11 +68,10 @@ export const About = () => {
           eventKey="1"
           onClick={() => {
             toggleActive("skills");
-            console.log({ skillsActive });
           }}
         >
           <Accordion.Header>
-            {skillsActive ? (
+            {active === "skills" ? (
               <div style={styles.activeHeader}>
                 <h1>
                   Skills <IoIosArrowUp />
@@ -116,11 +98,10 @@ export const About = () => {
           eventKey="2"
           onClick={() => {
             toggleActive("profile");
-            console.log({ profileActive });
           }}
         >
           <Accordion.Header>
-            {profileActive ? (
+            {active === "profile" ? (
               <div style={styles.activeHeader}>
                 <h1>
                   Profiles <IoIosArrowUp />
@@ -145,29 +126,6 @@ export const About = () => {
 };
 
 const styles: any = {
-  // logos: {
-  //   borderRadius: '5px',
-  // },
-
-  // row: {
-  //   justifyContent: 'center',
-  // },
-
-  // col: {
-  //   display: 'contents',
-  // },
-
-  // table td: {
-  //   border: "none !important",
-  //   outline: "none !important",
-  //   paddingTop: '2px',
-  // },
-
-  // profiles: {
-  //   paddingTop: '50px',
-  //   paddingBottom: '15px',
-  // },
-
   customAccordian: {
     backgroundColor: "transparent",
     width: "100%",
@@ -177,15 +135,6 @@ const styles: any = {
   accordianItem: {
     backgroundColor: "transparent",
   },
-
-  // cardHeader: {
-  //   border: 'none',
-  //   backgroundColor: 'transparent',
-  //   fontFamily: 'Alegreya serif',
-  //   fontSize: '40px',
-  //   textAlign: 'left',
-  //   marginBottom: '2px !important',
-  // },
 
   activeHeader: {
     boxShadow: "inset 0 -14rem 0 0 #3fa2dd",
@@ -202,25 +151,10 @@ const styles: any = {
     marginRight: "60px",
   },
 
-  // card: {
-  //   border: 'none',
-  // },
-
   inactiveHeader: {
     boxShadow: "inset 0 -0.2rem 0 0 #3fa2dd",
     transition: "boxShadow 0.4s",
     width: "100%",
-
-    // &start-offset: {
-    //   boxShadow: 'inset 0 -1.4rem 0 0 #3fa2dd',
-
-    //   &:hover: {
-    //     boxShadow: 'inset 0 -0.2rem 0 0 #3fa2dd',
-    //   },
-    // },
-
-    // &:hover: {
-    //   boxShadow: 'inset 0 -1.4rem 0 0 #3fa2dd',
-    // },
+    color: "white",
   },
 };
