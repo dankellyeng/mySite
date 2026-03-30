@@ -3,7 +3,6 @@ import { BrowserRouter } from "react-router-dom";
 import CustomNavBar from "./components/CustomNavBar";
 import Router from "./router";
 import { Layout } from "./layouts/Layout";
-// import { withAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
 
 const App: React.FC = () => {
   return (
@@ -16,10 +15,8 @@ const App: React.FC = () => {
           </BrowserRouter>
         </React.Fragment>
       </Layout>
-      {/* <AmplifySignOut /> */}
     </div>
   );
 };
 
-// export default withAuthenticator(App);
 export default App;
